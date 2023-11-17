@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+
+  app:
+    container_name: demo-atencion-consultas_app
+    image: cgmn/laravel-php82-oracle:1.0.0
+    working_dir: /var/www/html
+    restart: unless-stopped
+    volumes:
+      - ".:/var/www/html"
+      - "/etc/localtime:/etc/localtime:ro"
+    ports:
+      - "10050:80"
+    env_file:
+      - .env
+    logging:
+      options:
+        max-size: ${LOGGING_OPTIONS_MAX_SIZE:-200k}
